@@ -8,74 +8,103 @@
   <title>Chicago Red Light Violations</title>
   <script src="https://d3js.org/d3.v7.min.js"></script>
   <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>  <!-- inspiration from chatgpt -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  
+  <!-- LEAFLET CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+    crossorigin="" />
+  <!-- LEAFLET JS -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+  integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+  crossorigin=""></script>
+
+  <link rel="stylesheet" type="text/css" href="static/style.css">
+
+  <style type = "text/css">
+    #map {
+      height: 800px;
+      width: 100%;
+      margin-top: 20px;
+      margin-bottom: 20px;
+    }
+    .one {
+      color: red;
+      font-weight:bold;
+    }
+    .two {
+      color: yellow;
+      font-weight:bold;
+    }
+    .three {
+      color: green;
+      font-weight:bold;
+    }
+    #chart1 {
+      width: 100%
+    }
+
+  </style>
 </head>
 
-<body>
-  <input type="file" id="fileInput" accept=".csv">  <!-- inspiration from chatgpt, down to /script -->
-  <pre id="output"></pre>
-  <script> 
-    document.getElementById('fileInput').addEventListener('change', handleFile);
-
-    function handleFile(event) {
-      const file = event.target.files[0];
-
-      if (file) {
-        const reader = new FileReader();
-
-        reader.onload = function(e) {
-          const content = e.target.result;
-          document.getElementById('output').innerText = content;
-          // You can parse the CSV content or perform other operations here
-        };
-
-        reader.readAsText(file);
-      }
-    }
-  </script>
+<body style="background-color: #87CEEB">
 
   <div class="container">
     <div class="row">
-      <div class="col-sm-10 jumbotron text-right">
-        <h2>Chicago's Red Light Violations Data</h2>
+      <div class="col-sm-12 jumbotron text-center">
+        <h2>
+          <span class="three">Red</span> 
+          <span class="one">Light</span> 
+          <span class="two">Camera</span> 
+          <b>Violations in Chicago Since Inception</b></h2>
       </div>
     </div>
     <div class="row">
-      <div class="col-md-2">
-        <div class="well">
-          <h5>Test Subject ID No.:</h5>
-          <select id="selDataset" onchange="optionChanged(this.value)"></select>
+      <div class="col-md-2" text-left>
+        <!-- <div id="plot"></div> -->
+          <h3><b>Violation Year</b></h3>
+          <select id="selDataset" class="custom-select">
+            <option value="2014">2014</option>
+            <option value="2015">2015</option>
+            <option value="2016">2016</option>
+            <option value="2017">2017</option>
+            <option value="2018">2018</option>
+            <option value="2019">2019</option>
+            <option value="2020">2020</option>
+            <option value="2021">2021</option>
+            <option value="2022">2022</option>
+            <option value="2023">2023</option>
+            <option value="overall">overall</option>
+          </select>
         </div>
-        
-      <div class="col-md-5">
-        <div id="bar"></div>
       </div>
-      <div class="col-md-5">
-        <div id="gauge"></div>
+
+      <div class="row">
+        <div class="col-md-5">
+          <div id="bar"></div>
+        </div>
+
+      <!-- <div class="row"> -->
+        <div class="col-md-5">
+          <div id="gauge"></div>
+        </div>
       </div>
-    </div>
+
+  <div class = "row">
+    <div class="col-md-10"></div>
+      <div id="chart1" class="chart-container"></div>
   </div>
 
-  <div id="plot"></div>
-  <h2>Violation Year</h2>
-  <select id="selDataset">
-    <option value="2014">2014</option>
-    <option value="2015">2015</option>
-    <option value="2016">2016</option>
-    <option value="2017">2017</option>
-    <option value="2018">2018</option>
-    <option value="2019">2019</option>
-    <option value="2020">2020</option>
-    <option value="2021">2021</option>
-    <option value="2022">2022</option>
-    <option value="2023">2023</option>
-  </select>
+    <div class = "row">
+      <div class="col-md-12">
+        <div id="map"></div>
+      </div> 
+    </div>
 
-  <select id>
-    <div id="chart"></div>
-    
-  <script src="/static/project_03.js"></script>
-  <script src="/static/data_renamed.csv"></script>
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+  <script type="text/javascript" src="static/leaflet-heat.js"></script>
+  <script type="text/javascript" src="static/project_03.js"></script>
 
 </body>
 
