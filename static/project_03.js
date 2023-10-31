@@ -379,32 +379,32 @@ legend.addTo(myMap);
 })
 
 
-function makeHeat (heatPeryear) {
-  let heat = heatPeryear;
+// function makeHeat (heatPeryear) {
+//   let heat = heatPeryear;
 
-  heatmapData = []
-  coords = []
-  let triple = []
+//   heatmapData = []
+//   coords = []
+//   let triple = []
 
-  // console.log(heat)
+//   // console.log(heat)
 
-  for (let x = 0; x < heat.length; x++) { 
-      dataPull = {};
-      // dataPull["camera_id"] = heat[x].camera_id;
-      dataPull["latitude"] = heat[x].latitude;
-      dataPull["longitude"] = heat[x].longitude;
-      dataPull["totalViolations"] = heat[x].violations;
-      heatmapData.push(dataPull)
-      latlong = {};
-      latlong["latitude"] = heat[x].latitude;
-      latlong["longitude"] = heat[x].longitude;
-      coords.push(latlong)
-      triple.push([heat[x].latitude, heat[x].longitude, heat[x].violations]);
-    }
+//   for (let x = 0; x < heat.length; x++) { 
+//       dataPull = {};
+//       // dataPull["camera_id"] = heat[x].camera_id;
+//       dataPull["latitude"] = heat[x].latitude;
+//       dataPull["longitude"] = heat[x].longitude;
+//       dataPull["totalViolations"] = heat[x].violations;
+//       heatmapData.push(dataPull)
+//       latlong = {};
+//       latlong["latitude"] = heat[x].latitude;
+//       latlong["longitude"] = heat[x].longitude;
+//       coords.push(latlong)
+//       triple.push([heat[x].latitude, heat[x].longitude, heat[x].violations]);
+//     }
  
-    let heatMap = L.heatLayer(triple, {
-      radius: 20,
-      blur: 25,
-      maxZoom: 14
-  }).addTo(myMap);
-}
+//     let heatMap = L.heatLayer(triple, {
+//       radius: 20,
+//       blur: 25,
+//       maxZoom: 14
+//   }).addTo(myMap);
+// }
